@@ -4,8 +4,10 @@ services:
   app:
     env_file:
       - ./env_file.txt
-    container_name: Scuola
+    container_name: EsameDiMaturita_SQL_INJECTION
     build:
       context: .
+    ports: 
+      - "127.0.0.1:5000:5000"
     volumes:
       - ./src:/src
