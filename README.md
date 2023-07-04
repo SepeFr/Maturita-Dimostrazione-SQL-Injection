@@ -1,4 +1,4 @@
-# Maturità
+# Maturità 📚
 
 ## Dimostrazione SQL Injection per l'Esame Orale di Maturità 2023
 
@@ -9,5 +9,5 @@ Inoltre, si è dimostrata l'importanza della cifratura dei dati sensibili nei da
 
 ## **Esecuzione**
 ```
-docker compose up --build
+docker compose up --build 
 ```
