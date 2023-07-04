@@ -2,7 +2,7 @@
 *.db 
 
 #Flask Sessions
-/flask_session
+/src/flask_session
 
 #Env
 env_file.txt
