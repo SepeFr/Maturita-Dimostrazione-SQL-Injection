@@ -1,0 +1,4 @@
+pysqlite3-binary
+Flask
+bcrypt
+flask-session

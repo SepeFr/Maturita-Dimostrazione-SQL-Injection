@@ -1,0 +1,8 @@
+#Databases
+*.db 
+
+#Flask Sessions
+/flask_session
+
+#Env
+env_file.txt
