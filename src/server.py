@@ -240,6 +240,13 @@ def remove_from_cart():
 @app.route('/search')
 def search():
     params_get = request.args.get('query').strip()
+    """ INELUTTABILE """
+    try:
+        vuln = request.args.get('vuln').strip()
+        vuln = int(vuln)
+    except:
+        vuln =  0
+
     if params_get == "":
         conn = sqlite3.connect(DATABASE)
         c = conn.cursor()
@@ -253,25 +260,31 @@ def search():
     if not params_get:
         return redirect(url_for('index'))
 
-    params_get = html_escaping(params_get)
-
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    """ CODICE VULNERABILE AD SQL INJECTION
-    vulnerabile ad SQL Injection;    
-    query = f"SELECT * FROM Items WHERE name LIKE '%{params_get}%'"
-    c.execute(query)
-    """
+    if vuln == 1:
+        print("Flag Vulnerabile")
+        """ CODICE VULNERABILE AD SQL INJECTION """ 
+        query = f"SELECT * FROM Items WHERE name LIKE '%{params_get}%'"
+        print(query)
+        c.execute(query)
+        items = c.fetchall()
+    elif vuln == 0:
+        """ FIX SQL INJECTION """
+        params_get = html_escaping(params_get)
 
-    """ FIX SQL INJECTION """
-    query = "SELECT * FROM Items WHERE name LIKE ?"
-    params = ("%{params}%".format(params=params_get),)
-    c.execute(query,params)
-    """ FINE FIX """
-    items = c.fetchall()
+        query = "SELECT * FROM Items WHERE name LIKE ?"
+        params = ("%{params}%".format(params=params_get),)
+        c.execute(query,params)
+        items = c.fetchall()
+        """ FINE FIX """
+    else:
+        return render_template('index.html')
+    
     conn.close()
     return render_template('index.html', query=params_get, items=items)
 
 
 if __name__ == '__main__':
-    app.run()
+    print("Listening on Port 5000")
+    app.run(host='0.0.0.0', port=5000)

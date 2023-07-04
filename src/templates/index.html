@@ -124,6 +124,9 @@
       <input type="text" name="query" class="form-control" placeholder="Inserisci il Titolo del Libro">
       <button type="submit" class="btn btn-dark">Cerca</button>
     </div>
+    <br>
+    <input type="checkbox" id="vuln" name="vuln" value=1>
+    <label for="vuln"> Vulnerabile ad SQL INJECTION?</label><br>
   </form>
   <h2>
     {% if query %}
